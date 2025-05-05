@@ -31,6 +31,9 @@ public class DenseLayer {
         this.biases = new double[numberOfNeurons];
 
         this.weights = randomizeWeights(numberOfNeurons, inputSize); // Random initialization of weights
+        for (int i = 0; i < numberOfNeurons; i++) {
+            this.biases[i] = 0; // initialization of biases
+        }
     }
 
     private double[][] randomizeWeights(int rows, int cols) {
