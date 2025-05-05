@@ -54,7 +54,7 @@ public class DenseLayer {
                 for (int k = 0; k < inputSize; k++) {
                     sum += input[i][k] * weights[k][j]; // Weighted sum of inputs
                 }
-                sum += biases[j]; // Add bias
+                this.output[i][j] = sum + biases[j]; // Add bias
             }
         }
 
