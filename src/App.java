@@ -8,13 +8,14 @@ public class App {
         double[][] X = dataset.X; // 2D points
         double[] y = dataset.y; // class labels
         
-        // Create a DenseLayer with 2 inputs and 3 neurons
+        // Create a DenseLayer with 2 input features and 3 output neurons
+        // First DenseLayer with 2 inputs and 3 neurons
         DenseLayer layer1 = new DenseLayer(2, 3);
 
         // ReLU activation layer
         ActivationReLU activation1 = new ActivationReLU();
 
-        // Second DenseLayer with 3 inputs and 3 neurons from the first layer
+        // Second DenseLayer with 3 input features (from the previous layer) and 3 output neurons
         DenseLayer layer2 = new DenseLayer(3, 3);
 
         // Softmax classifier's combined loss and activation layer

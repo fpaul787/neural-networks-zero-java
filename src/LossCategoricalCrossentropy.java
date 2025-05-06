@@ -7,6 +7,13 @@ public class LossCategoricalCrossentropy {
         super();
     }
 
+    /**
+     * * Forward pass through the categorical crossentropy loss layer.
+     * This method calculates the categorical crossentropy loss for each sample in the batch.
+     * @param yPred 2D array of predicted probabilities (batch size x number of classes).
+     * @param yTrue 1D array of true class labels (for binary classification) or 2D array of one-hot encoded labels (for categorical classification).
+     * @return 1D array of categorical crossentropy losses for each sample in the batch.
+     */
     public double[] forward(double[][] yPred, Object yTrue) {
         // Calculate the categorical crossentropy loss
         int rows = yPred.length;
@@ -41,6 +48,12 @@ public class LossCategoricalCrossentropy {
         return losses; // Return the losses for each sample
     }
 
+    /**
+     * Calculate the mean loss for the batch.
+     * @param output 2D array of predicted probabilities (batch size x number of classes).
+     * @param yTrue 1D array of true class labels (for binary classification) or 2D array of one-hot encoded labels (for categorical classification).
+     * @return Mean categorical crossentropy loss for the batch.
+     */
     public double calculate(double[][] output, Object yTrue) {
         // Calculate the sample losses
         double[] sampleLosses = this.forward(output, yTrue);

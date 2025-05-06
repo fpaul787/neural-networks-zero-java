@@ -6,6 +6,10 @@ public class ActivationSoftmax {
         super();
     }
 
+    /**
+     * Forward pass through the softmax layer.
+     * @param inputs 2D array of inputs (batch size x number of classes).
+     */
     public void forward(double[][] inputs) {
 
         // Unnormalized probabilities
@@ -44,6 +48,10 @@ public class ActivationSoftmax {
         this.output = probabilities; // Store the output for backpropagation
     }
 
+    /*
+     * Get the output of the softmax layer.
+     * @return 2D array of probabilities (batch size x number of classes).
+     */
     public double[][] getOutput() {
         return this.output; // Return the output of the layer
     }

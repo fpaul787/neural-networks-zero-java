@@ -3,8 +3,6 @@ import models.*;
 
 public class SpiralDataGenerator {
 
-
-
     /**
      * Copyright (c) 2015 Andrej Karpathy
      * License: https://github.com/cs231n/cs231n.github.io/blob/master/LICENSE

@@ -11,6 +11,7 @@ public class DenseLayer {
     private double[][] output; // Output of the layer
 
     /**
+     * Constructor for the DenseLayer.
      * @param inputSize Input size of the layer.
      * @param numberOfNeurons Number of neurons in the layer.
      * @throws IllegalArgumentException if inputSize or numberOfNeurons is null or less than 1.
@@ -31,14 +32,11 @@ public class DenseLayer {
         this.biases = initializeBiases(numberOfNeurons); // Initialization of biases
     }
 
+    /**
+     * Forward pass through the layer.
+     * * @param input 2D array of inputs (batch size x input size).
+     */
     public void forward(double[][] input) {
-        // // Forward pass through the layer
-        // if (input.length != inputSize) {
-        //     throw new IllegalArgumentException("Input size does not match the layer's input size.");
-        // }
-        // if (input[0].length != inputSize) {
-        //     throw new IllegalArgumentException("Input size does not match the layer's input size.");
-        // }
 
         // Calculate the output values from inputs, weights, and biases
         int batchSize = input.length;
@@ -60,6 +58,10 @@ public class DenseLayer {
 
     }
 
+    /**
+     * Get the output of the layer.
+     * @return 2D array of outputs (batch size x number of neurons).
+     */
     public double[][] getOutput() {
         return this.output; // Return the output of the layer
     }

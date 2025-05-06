@@ -7,6 +7,11 @@ public class ActivationReLU {
     public ActivationReLU() {
     }
 
+    /**
+     * Forward pass through the ReLU activation function.
+     * The ReLU function is defined as f(x) = max(0, x).
+     * @param inputs The input data (2D array)
+     */
     public void forward(double[][] inputs) {
         this.inputs = inputs; // Store the input for backpropagation
         this.output = new double[inputs.length][inputs[0].length]; // Initialize output array
@@ -17,6 +22,10 @@ public class ActivationReLU {
         }
     }
 
+    /**
+     * Output of the ReLU activation function.
+     * @return The output of the ReLU activation function (2D array)
+     */
     public double[][] getOutput() {
         return output; // Return the output of the layer
     }
