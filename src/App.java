@@ -13,5 +13,10 @@ public class App {
 
         // ReLU activation layer
         Activation_ReLU activation1 = new Activation_ReLU();
+
+        // Second DenseLayer with 3 inputs and 3 neurons from the first layer
+        DenseLayer layer2 = new DenseLayer(3, 3);
+
+        
     }
 }
