@@ -1,10 +1,10 @@
-public class Activation_ReLU {
+public class ActivationReLU {
 
     private double[][] inputs; // Input to the layer
     private double[][] output; // Output of the layer
 
 
-    public Activation_ReLU() {
+    public ActivationReLU() {
     }
 
     public void forward(double[][] inputs) {

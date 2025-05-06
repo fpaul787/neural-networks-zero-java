@@ -12,11 +12,12 @@ public class App {
         DenseLayer layer = new DenseLayer(2, 3);
 
         // ReLU activation layer
-        Activation_ReLU activation1 = new Activation_ReLU();
+        ActivationReLU activation1 = new ActivationReLU();
 
         // Second DenseLayer with 3 inputs and 3 neurons from the first layer
         DenseLayer layer2 = new DenseLayer(3, 3);
 
-        
+        // softmax activation layer
+
     }
 }
