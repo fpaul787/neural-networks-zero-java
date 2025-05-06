@@ -32,13 +32,13 @@ public class DenseLayer {
     }
 
     public void forward(double[][] input) {
-        // Forward pass through the layer
-        if (input.length != inputSize) {
-            throw new IllegalArgumentException("Input size does not match the layer's input size.");
-        }
-        if (input[0].length != inputSize) {
-            throw new IllegalArgumentException("Input size does not match the layer's input size.");
-        }
+        // // Forward pass through the layer
+        // if (input.length != inputSize) {
+        //     throw new IllegalArgumentException("Input size does not match the layer's input size.");
+        // }
+        // if (input[0].length != inputSize) {
+        //     throw new IllegalArgumentException("Input size does not match the layer's input size.");
+        // }
 
         // Calculate the output values from inputs, weights, and biases
         int batchSize = input.length;
@@ -58,6 +58,10 @@ public class DenseLayer {
             }
         }
 
+    }
+
+    public double[][] getOutput() {
+        return this.output; // Return the output of the layer
     }
 
     private double[][] initializeWeights(int rows, int cols) {

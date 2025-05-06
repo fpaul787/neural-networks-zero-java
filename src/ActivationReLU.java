@@ -16,4 +16,8 @@ public class ActivationReLU {
             }
         }
     }
+
+    public double[][] getOutput() {
+        return output; // Return the output of the layer
+    }
 }

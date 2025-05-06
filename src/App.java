@@ -9,7 +9,7 @@ public class App {
         double[] y = dataset.y; // class labels
         
         // Create a DenseLayer with 2 inputs and 3 neurons
-        DenseLayer layer = new DenseLayer(2, 3);
+        DenseLayer layer1 = new DenseLayer(2, 3);
 
         // ReLU activation layer
         ActivationReLU activation1 = new ActivationReLU();
@@ -20,5 +20,19 @@ public class App {
         // Softmax classifier's combined loss and activation layer
         ActivationCategoricalCrossentropySoftmaxLoss loss = new ActivationCategoricalCrossentropySoftmaxLoss();
 
+        int epochs = 1; // Number of epochs
+        for (int i = 0; i < epochs; i++) {
+            
+            // Perfomance of forward pass through the first layer
+            layer1.forward(X); // Forward pass through the first layer
+
+            double[][] layer1Output = layer1.getOutput(); // Get the output from the first layer
+            activation1.forward(layer1Output); // Forward pass through ReLU activation
+
+            // Perform a forward pass through the second layer
+            layer2.forward(activation1.getOutput()); // Forward pass through the second layer
+
+            // backward pass
+        }
     }
 }
