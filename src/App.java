@@ -17,7 +17,8 @@ public class App {
         // Second DenseLayer with 3 inputs and 3 neurons from the first layer
         DenseLayer layer2 = new DenseLayer(3, 3);
 
-        // softmax activation layer
+        // Softmax classifier's combined loss and activation layer
+        ActivationCategoricalCrossentropySoftmaxLoss loss = new ActivationCategoricalCrossentropySoftmaxLoss();
 
     }
 }

@@ -43,4 +43,8 @@ public class ActivationSoftmax {
 
         this.output = probabilities; // Store the output for backpropagation
     }
+
+    public double[][] getOutput() {
+        return this.output; // Return the output of the layer
+    }
 }
