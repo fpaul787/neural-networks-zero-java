@@ -79,7 +79,7 @@ public class DenseLayer {
         this.dBiases = new double[dValues[0].length];
         for (int i = 0; i < dValues.length; i++) {
             for (int j = 0; j < dValues[0].length; j++) {
-                this.dBiases[i] += dValues[j][i]; // Sum of gradients on output
+                this.dBiases[j] += dValues[i][j]; // Sum of gradients on output
             }
         }
 

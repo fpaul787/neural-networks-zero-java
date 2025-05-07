@@ -34,6 +34,7 @@ public class ActivationCategoricalCrossentropySoftmaxLoss {
      * @param yTrue The true labels (2D array).
      */
     public void backward(double[][] dvalues, Object yTrue) {
+        this.dinputs = new double[dvalues.length][dvalues[0].length]; // Initialize dinputs
         // number of samples
         int samples = dvalues.length;
         // number of classes
