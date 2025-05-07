@@ -35,7 +35,6 @@ public class App {
 
             double loss = lossActivation.forward(denseLayer2.getOutput(), y); // Forward pass through the loss layer
 
-
             // Get the predicted class labels
             int[] predictions = argMax(lossActivation.getOutput()); // Get the predicted class labels
 
