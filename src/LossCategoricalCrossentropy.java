@@ -37,8 +37,8 @@ public class LossCategoricalCrossentropy {
         // Binary classification
         if (yTrue instanceof int[]) { // Assuming yTrue is a 1D array of class labels
             correctConfidences = correctConfidences(clipped, (int[]) yTrue); // Binary classification
-        } else if (yTrue instanceof double[][]) { // Assuming yTrue is a 2D array of one-hot encoded labels
-           correctConfidences = correctConfidences(clipped, (double[][]) yTrue); // Categorical classification
+        } else if (yTrue instanceof int[][]) { // Assuming yTrue is a 2D array of one-hot encoded labels
+           correctConfidences = correctConfidences(clipped, (int[][]) yTrue); // Categorical classification
         } else {
             throw new IllegalArgumentException("Invalid type for yTrue. Expected int[] or double[][]");
         }
@@ -82,7 +82,7 @@ public class LossCategoricalCrossentropy {
         return correctConfidences;
     }
 
-    private static double[] correctConfidences(double[][] yPredClipped, double[][] yTrue) {
+    private static double[] correctConfidences(double[][] yPredClipped, int[][] yTrue) {
         int samples = yTrue.length;
         int classes = yTrue[0].length;
         double[] correctConfidences = new double[samples];
