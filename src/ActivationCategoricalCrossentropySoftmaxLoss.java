@@ -21,10 +21,11 @@ public class ActivationCategoricalCrossentropySoftmaxLoss {
         this.activation.forward(inputs);
         
         // Set the output
-        this.output = this.activation.getOutput(); // Get the output from softmax activation
+        // Get the output (predicted values) from softmax activation
+        this.output = this.activation.getOutput(); 
 
         // Calculate the loss using categorical crossentropy
-        return this.loss.calculate(this.output, yTrue); // Calculate the loss using categorical crossentropy
+        return this.loss.calculate(this.output, yTrue);
     }
 
     /**

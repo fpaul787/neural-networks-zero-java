@@ -26,32 +26,41 @@ public class App {
         for (int epoch = 0; epoch < epochs; epoch++) {
             
             // Perfomance of forward pass through the first layer
-            denseLayer1.forward(X); // Forward pass through the first layer
+            // Forward pass through the first layer
+            denseLayer1.forward(X); 
 
-            activation1.forward(denseLayer1.getOutput()); // Forward pass through ReLU activation
+            // Forward pass through ReLU activation
+            activation1.forward(denseLayer1.getOutput());
 
             // Perform a forward pass through the second layer
-            denseLayer2.forward(activation1.getOutput()); // Forward pass through the second layer
+            // Forward pass through the second layer
+            denseLayer2.forward(activation1.getOutput()); 
 
-            double loss = lossActivation.forward(denseLayer2.getOutput(), y); // Forward pass through the loss layer
+            // Forward pass through the loss layer
+            double loss = lossActivation.forward(denseLayer2.getOutput(), y);
 
             // Get the predicted class labels
-            int[] predictions = argMax(lossActivation.getOutput()); // Get the predicted class labels
+            int[] predictions = argMax(lossActivation.getOutput());
 
             // Calculate accuracy
-            double accuracy = calculateAccuracy(predictions, y); // Calculate accuracy
+            double accuracy = calculateAccuracy(predictions, y);
 
             // Backward pass through the loss layer
-            lossActivation.backward(lossActivation.getOutput(), y); // Backward pass through the loss layer
-            denseLayer2.backward(lossActivation.getDInputs()); // Backward pass through the second layer
-            activation1.backward(denseLayer2.getDInputs()); // Backward pass through ReLU activation
-            denseLayer1.backward(activation1.getDInputs()); // Backward pass through the
+            lossActivation.backward(lossActivation.getOutput(), y);
+
+            // Backward pass through the second layer
+            denseLayer2.backward(lossActivation.getDInputs());
+
+            // Backward pass through ReLU activation
+            activation1.backward(denseLayer2.getDInputs());
+
+            // Backward pass through the first layer
+            denseLayer1.backward(activation1.getDInputs());
 
             // Print loss and accuracy every 100 epochs
             if (epoch % 100 != 0) {
                 System.out.println("Epoch: " + epoch + ", Loss: " + loss + ", Accuracy: " + accuracy);
             }
-            
         }
     }
 

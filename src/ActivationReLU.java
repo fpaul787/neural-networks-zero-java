@@ -9,6 +9,8 @@ public class ActivationReLU {
 
     /**
      * Forward pass through the ReLU activation function.
+     * This method applies the ReLU activation function to the input data.
+     * The negative values are set to zero, and the positive values remain unchanged.
      * The ReLU function is defined as f(x) = max(0, x).
      * 
      * @param inputs The input data (2D array)
