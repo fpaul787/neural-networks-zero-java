@@ -2,8 +2,8 @@ public class ActivationCategoricalCrossentropySoftmaxLoss {
 
     private ActivationSoftmax activation;
     private LossCategoricalCrossentropy loss;
-    private double[][] output; // Output of the softmax activation
-    double[][] dinputs; // Gradient of the loss with respect to the inputs
+    private double[][] output;
+    double[][] dinputs;
 
     public ActivationCategoricalCrossentropySoftmaxLoss() {
         // Softmax activation
@@ -49,10 +49,10 @@ public class ActivationCategoricalCrossentropySoftmaxLoss {
         // Check if labels are binary or categorical
         if (yTrue instanceof int[]) {
             yTrueint = (int[]) yTrue;
-        }else if (yTrue instanceof double[]) {
-            System.out.println("yTrue is double[]");
+        }else if (yTrue instanceof int[][]) {
+            System.out.println("yTrue is int[][]");
         } else {
-            throw new IllegalArgumentException("yTrue must be an int[] or double[]");
+            throw new IllegalArgumentException("yTrue must be an int[] or int[][]");
         }
 
         // Copy to modify the original array

@@ -62,7 +62,6 @@ public class App {
             if (epoch % 100 == 0) {
                 System.out.printf("epoch: %d, acc: %.3f, loss: %.3f%n", epoch, accuracy, loss);
             }
-
         }
     }
 

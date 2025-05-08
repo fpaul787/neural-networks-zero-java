@@ -35,17 +35,17 @@ public class LossCategoricalCrossentropy {
         double[] correctConfidences = new double[samples];
 
         // Binary classification
-        if (yTrue instanceof int[]) { // Assuming yTrue is a 1D array of class labels
-            correctConfidences = correctConfidences(clipped, (int[]) yTrue); // Binary classification
-        } else if (yTrue instanceof int[][]) { // Assuming yTrue is a 2D array of one-hot encoded labels
-           correctConfidences = correctConfidences(clipped, (int[][]) yTrue); // Categorical classification
+        if (yTrue instanceof int[]) {
+            correctConfidences = correctConfidences(clipped, (int[]) yTrue);
+        } else if (yTrue instanceof int[][]) {
+           correctConfidences = correctConfidences(clipped, (int[][]) yTrue);
         } else {
             throw new IllegalArgumentException("Invalid type for yTrue. Expected int[] or double[][]");
         }
 
         // Calculate the loss
-        double[] losses = negativeLogLikelihoods(correctConfidences); // Negative log likelihoods
-        return losses; // Return the losses for each sample
+        double[] losses = negativeLogLikelihoods(correctConfidences);
+        return losses;
     }
 
     /**
@@ -59,9 +59,9 @@ public class LossCategoricalCrossentropy {
         double[] sampleLosses = this.forward(output, yTrue);
 
         // Calculate the mean loss
-        double meanLoss = mean(sampleLosses); // Mean loss
+        double meanLoss = mean(sampleLosses);
 
-        return meanLoss; // Return the mean loss
+        return meanLoss;
     }
 
     private double mean(double[] sampleLosses) {
@@ -69,7 +69,7 @@ public class LossCategoricalCrossentropy {
         for (double loss : sampleLosses) {
             sum += loss;
         }
-        return sum / sampleLosses.length; // Mean loss
+        return sum / sampleLosses.length;
     }
 
     private static double[] correctConfidences(double[][] yPredClipped, int[] yTrue) {
@@ -77,7 +77,7 @@ public class LossCategoricalCrossentropy {
         double[] correctConfidences = new double[samples];
 
         for (int i = 0; i < samples; i++) {
-            correctConfidences[i] = yPredClipped[i][yTrue[i]]; // Binary classification
+            correctConfidences[i] = yPredClipped[i][yTrue[i]];
         }
         return correctConfidences;
     }
@@ -90,9 +90,9 @@ public class LossCategoricalCrossentropy {
         for (int i = 0; i < samples; i++) {
             double sum = 0.0;
             for (int j = 0; j < classes; j++) {
-                sum += yPredClipped[i][j] * yTrue[i][j]; // Categorical classification
+                sum += yPredClipped[i][j] * yTrue[i][j];
             }
-            correctConfidences[i] = sum; // Sum of probabilities for the true class
+            correctConfidences[i] = sum;
         }
         return correctConfidences;
     }
@@ -102,7 +102,7 @@ public class LossCategoricalCrossentropy {
         double[] losses = new double[samples];
 
         for (int i = 0; i < samples; i++) {
-            losses[i] = -Math.log(correctConfidences[i]); // Categorical crossentropy loss
+            losses[i] = -Math.log(correctConfidences[i]);
         }
 
         return losses;

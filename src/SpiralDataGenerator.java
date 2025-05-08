@@ -9,32 +9,32 @@ public class SpiralDataGenerator {
      * Source: https://cs231n.github.io/neural-networks-case-study/
      */
     public static Data createDataset(int numSamples, int numClasses) {
-        double[][] X = new double[numSamples*numClasses][2]; // 2D points
-        int[] y = new int[numSamples*numClasses]; // class labels
+        double[][] X = new double[numSamples*numClasses][2];
+        int[] y = new int[numSamples*numClasses];
 
-        Random rand = new Random(0); // seed for reproducibility
+        Random rand = new Random(0);
 
         for (int classNum = 0; classNum < numClasses; classNum++) {
             int start = numSamples * classNum; // 0
 
-            double[] r = linspace(0, 1, numSamples); // 0 to 1 with numSamples points
-            double[] t = linspace(classNum * 4.0, (classNum + 1) * 4.0, numSamples); // 0 to 4 with numSamples points
+            double[] r = linspace(0, 1, numSamples);
+            double[] t = linspace(classNum * 4.0, (classNum + 1) * 4.0, numSamples);
 
             // Add Guassian noise
             for (int i = 0; i < numSamples; i++) {
-                t[i] += rand.nextGaussian() * 0.2; // add noise to t
+                t[i] += rand.nextGaussian() * 0.2;
             }
 
             for (int i = 0; i < numSamples; i++) {
                 double angle = t[i] * 2.5;
-                int ix = start + i; // index for the current sample
-                X[ix][0] = r[i] * Math.sin(angle); // x coordinate
-                X[ix][1] = r[i] * Math.cos(angle); // y coordinate
-                y[ix] = classNum; // class label
+                int ix = start + i;
+                X[ix][0] = r[i] * Math.sin(angle);
+                X[ix][1] = r[i] * Math.cos(angle);
+                y[ix] = classNum;
             }
         }
 
-        return new Data(X, y); // return the dataset
+        return new Data(X, y);
     }
 
     /**

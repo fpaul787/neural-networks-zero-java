@@ -1,8 +1,8 @@
 public class ActivationReLU {
 
-    private double[][] inputs; // Input to the layer
-    private double[][] output; // Output of the layer
-    private double[][] dInputs; // Gradient of inputs
+    private double[][] inputs;
+    private double[][] output;
+    private double[][] dInputs;
 
     public ActivationReLU() {
     }
@@ -16,11 +16,11 @@ public class ActivationReLU {
      * @param inputs The input data (2D array)
      */
     public void forward(double[][] inputs) {
-        this.inputs = inputs; // Store the input for backpropagation
-        this.output = new double[inputs.length][inputs[0].length]; // Initialize output array
+        this.inputs = inputs;
+        this.output = new double[inputs.length][inputs[0].length];
         for (int i = 0; i < inputs.length; i++) {
             for (int j = 0; j < inputs[0].length; j++) {
-                output[i][j] = Math.max(0, inputs[i][j]); // Apply ReLU activation function
+                output[i][j] = Math.max(0, inputs[i][j]);
             }
         }
     }
@@ -31,7 +31,7 @@ public class ActivationReLU {
      */
     public void backward(double[][] dValues) {
         // Copy original since we will need to modify it
-        dInputs = new double[dValues.length][dValues[0].length]; // Initialize dInputs array
+        dInputs = new double[dValues.length][dValues[0].length];
         for (int i = 0; i < dValues.length; i++) {
             for (int j = 0; j < dValues[0].length; j++) {
                 dInputs[i][j] = dValues[i][j];
@@ -42,7 +42,7 @@ public class ActivationReLU {
         for (int i = 0; i < dValues.length; i++) {
             for (int j = 0; j < dValues[0].length; j++) {
                 if (inputs[i][j] <= 0) {
-                    dInputs[i][j] = 0; // Set gradient to zero for negative inputs
+                    dInputs[i][j] = 0;
                 }
             }
         }
@@ -54,7 +54,7 @@ public class ActivationReLU {
      * @return The output of the ReLU activation function (2D array)
      */
     public double[][] getOutput() {
-        return output; // Return the output of the layer
+        return output;
     }
 
     /**
@@ -62,6 +62,6 @@ public class ActivationReLU {
      * @return The gradient of the inputs (2D array)
      */
     public double[][] getDInputs() {
-        return dInputs; // Return the gradient of inputs
+        return dInputs;
     }
 }
