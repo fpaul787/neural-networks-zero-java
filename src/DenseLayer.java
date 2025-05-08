@@ -43,7 +43,7 @@ public class DenseLayer {
     public void forward(double[][] input) {
 
         // Store the inputs for backpropagation
-        this.inputs = input; 
+        this.inputs = input;
         
         // Calculate the output values from inputs, weights, and biases
         int batchSize = input.length;
@@ -55,14 +55,12 @@ public class DenseLayer {
         // Perform the matrix multiplication (dot product) and add biases
         for (int i = 0; i < batchSize; i++) {
             for (int j = 0; j < numberOfNeurons; j++) {
-                double sum = 0.0;
+                this.output[i][j] = biases[j];
                 for (int k = 0; k < inputSize; k++) {
-                    sum += input[i][k] * weights[k][j];
+                    this.output[i][j] += input[i][k] * weights[k][j];
                 }
-                this.output[i][j] = sum + biases[j];
             }
         }
-
     }
 
     /**
@@ -73,11 +71,12 @@ public class DenseLayer {
         
         // Gradient on parameters, dot product of inputs and gradient on output
         this.dWeights = new double[inputSize][numberOfNeurons];
+        // Gradient on biases, sum of gradient on output
+        this.dBiases = new double[dValues[0].length];
+
         double[][] inputsT = transpose(this.inputs);
         this.dWeights = dot(inputsT, dValues);
 
-        // Gradient on biases, sum of gradient on output
-        this.dBiases = new double[dValues[0].length];
         for (int i = 0; i < dValues.length; i++) {
             for (int j = 0; j < dValues[0].length; j++) {
                 this.dBiases[j] += dValues[i][j];
@@ -87,7 +86,6 @@ public class DenseLayer {
         // Gradient on inputs
         double[][] weightsT = transpose(this.weights);
         this.dInputs = dot(dValues, weightsT);
-        
     }
 
     /**
