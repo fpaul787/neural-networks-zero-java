@@ -6,13 +6,13 @@ public class DenseLayer {
 
     private int inputSize;
     private int numberOfNeurons;
-    private double[][] weights; // Weights for the layer
-    private double[] biases; // Biases for the layer
-    private double[][] inputs; // Inputs to the layer
-    private double[][] output; // Output of the layer
-    private double[][] dWeights; // Gradient of weights
-    private double[] dBiases; // Gradient of biases
-    private double[][] dInputs; // Gradient of inputs
+    private double[][] weights;
+    private double[] biases;
+    private double[][] inputs;
+    private double[][] output;
+    private double[][] dWeights;
+    private double[] dBiases;
+    private double[][] dInputs;
 
     /**
      * Constructor for the DenseLayer.
@@ -32,8 +32,8 @@ public class DenseLayer {
         this.weights = new double[inputSize][numberOfNeurons];
         this.biases = new double[numberOfNeurons];
 
-        this.weights = initializeWeights(inputSize, numberOfNeurons); // Random initialization of weights
-        this.biases = initializeBiases(numberOfNeurons); // Initialization of biases
+        this.weights = initializeWeights(inputSize, numberOfNeurons);
+        this.biases = initializeBiases(numberOfNeurons);
     }
 
     /**
@@ -42,7 +42,8 @@ public class DenseLayer {
      */
     public void forward(double[][] input) {
 
-        this.inputs = input; // Store the inputs for backpropagation
+        // Store the inputs for backpropagation
+        this.inputs = input; 
         
         // Calculate the output values from inputs, weights, and biases
         int batchSize = input.length;
@@ -56,9 +57,9 @@ public class DenseLayer {
             for (int j = 0; j < numberOfNeurons; j++) {
                 double sum = 0.0;
                 for (int k = 0; k < inputSize; k++) {
-                    sum += input[i][k] * weights[k][j]; // Weighted sum of inputs
+                    sum += input[i][k] * weights[k][j];
                 }
-                this.output[i][j] = sum + biases[j]; // Add bias
+                this.output[i][j] = sum + biases[j];
             }
         }
 
@@ -72,20 +73,20 @@ public class DenseLayer {
         
         // Gradient on parameters, dot product of inputs and gradient on output
         this.dWeights = new double[inputSize][numberOfNeurons];
-        double[][] inputsT = transpose(this.inputs); // Transpose the inputs for matrix multiplication
-        this.dWeights = dot(inputsT, dValues); // Gradient of weights
+        double[][] inputsT = transpose(this.inputs);
+        this.dWeights = dot(inputsT, dValues);
 
         // Gradient on biases, sum of gradient on output
         this.dBiases = new double[dValues[0].length];
         for (int i = 0; i < dValues.length; i++) {
             for (int j = 0; j < dValues[0].length; j++) {
-                this.dBiases[j] += dValues[i][j]; // Sum of gradients on output
+                this.dBiases[j] += dValues[i][j];
             }
         }
 
         // Gradient on inputs
-        double[][] weightsT = transpose(this.weights); // Transpose the weights for matrix multiplication
-        this.dInputs = dot(dValues, weightsT); // Gradient of inputs
+        double[][] weightsT = transpose(this.weights);
+        this.dInputs = dot(dValues, weightsT);
         
     }
 
@@ -94,7 +95,7 @@ public class DenseLayer {
      * @return 2D array of outputs (batch size x number of neurons).
      */
     public double[][] getOutput() {
-        return this.output; // Return the output of the layer
+        return this.output;
     }
 
     /**
@@ -102,7 +103,15 @@ public class DenseLayer {
      * @return 2D array of weights (input size x number of neurons).
      */
     public double[][] getWeights() {
-        return this.weights; // Return the weights of the layer
+        return this.weights;
+    }
+
+    /**
+     * Set the weights of the layer.
+     * @param weights 2D array of weights (input size x number of neurons).
+     */
+    public void setWeights(double[][] weights) {
+        this.weights = weights;
     }
 
     /**
@@ -110,7 +119,15 @@ public class DenseLayer {
      * @return 1D array of biases (number of neurons).
      */
     public double[] getBiases() {
-        return this.biases; // Return the biases of the layer
+        return this.biases;
+    }
+
+    /**
+     * Set the biases of the layer.
+     * @param biases 1D array of biases (number of neurons).
+     */
+    public void setBiases(double[] biases) {
+        this.biases = biases;
     }
 
     /**
@@ -118,7 +135,7 @@ public class DenseLayer {
      * @return 2D array of gradients of weights (input size x number of neurons).
      */
     public double[][] getDWeights() {
-        return this.dWeights; // Return the gradient of weights
+        return this.dWeights;
     }
 
     /**
@@ -126,7 +143,7 @@ public class DenseLayer {
      * @return 1D array of gradients of biases (number of neurons).
      */
     public double[] getDBiases() {
-        return this.dBiases; // Return the gradient of biases
+        return this.dBiases;
     }
 
     /**
@@ -134,14 +151,14 @@ public class DenseLayer {
      * @return 2D array of gradients of inputs (batch size x input size).
      */
     public double[][] getDInputs() {
-        return this.dInputs; // Return the gradient of inputs
+        return this.dInputs;
     }
 
     private double[][] initializeWeights(int rows, int cols) {
         double[][] randomWeights = new double[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                randomWeights[i][j] = Math.random(); // Random initialization of weights
+                randomWeights[i][j] = Math.random();
             }
         }
         return randomWeights;
@@ -150,7 +167,7 @@ public class DenseLayer {
     private double[] initializeBiases(int numberOfNeurons) {
         double[] biases = new double[numberOfNeurons];
         for (int i = 0; i < numberOfNeurons; i++) {
-            biases[i] = 0; // initialization of biases
+            biases[i] = 0;
         }
         return biases;
     }
@@ -166,7 +183,7 @@ public class DenseLayer {
         double[][] transposed = new double[cols][rows];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                transposed[j][i] = matrix[i][j]; // Transpose the matrix
+                transposed[j][i] = matrix[i][j];
             }
         }
         return transposed;
