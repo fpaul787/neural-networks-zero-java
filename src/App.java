@@ -23,7 +23,7 @@ public class App {
         ActivationCategoricalCrossentropySoftmaxLoss lossActivation = new ActivationCategoricalCrossentropySoftmaxLoss();
 
         // Learning rate and momentum
-        OptimizerSGD optimizer = new OptimizerSGD(0.01); 
+        OptimizerSGD optimizer = new OptimizerSGD(1.0); 
 
         int epochs = 10001; // Number of epochs
         for (int epoch = 0; epoch < epochs; epoch++) {
@@ -48,16 +48,10 @@ public class App {
             // Calculate accuracy
             double accuracy = calculateAccuracy(predictions, y);
 
-            // Backward pass through the loss layer
+            // Backward pass 
             lossActivation.backward(lossActivation.getOutput(), y);
-
-            // Backward pass through the second layer
             denseLayer2.backward(lossActivation.getDInputs());
-
-            // Backward pass through ReLU activation
             activation1.backward(denseLayer2.getDInputs());
-
-            // Backward pass through the first layer
             denseLayer1.backward(activation1.getDInputs());
 
             // Update parameters using SGD optimizer
@@ -66,8 +60,9 @@ public class App {
 
             // Print loss and accuracy every 100 epochs
             if (epoch % 100 == 0) {
-                System.out.println("Epoch: " + epoch + ",  Accuracy: " + accuracy + ", Loss: " + loss);
+                System.out.printf("epoch: %d, acc: %.3f, loss: %.3f%n", epoch, accuracy, loss);
             }
+
         }
     }
 
