@@ -6,8 +6,11 @@ public class ActivationCategoricalCrossentropySoftmaxLoss {
     double[][] dinputs; // Gradient of the loss with respect to the inputs
 
     public ActivationCategoricalCrossentropySoftmaxLoss() {
-        this.activation = new ActivationSoftmax(); // Softmax activation
-        this.loss = new LossCategoricalCrossentropy(); // Categorical crossentropy loss
+        // Softmax activation
+        this.activation = new ActivationSoftmax();
+
+         // Categorical crossentropy loss
+        this.loss = new LossCategoricalCrossentropy();
     }
 
     /**
@@ -20,7 +23,6 @@ public class ActivationCategoricalCrossentropySoftmaxLoss {
         // Forward pass through softmax activation
         this.activation.forward(inputs);
         
-        // Set the output
         // Get the output (predicted values) from softmax activation
         this.output = this.activation.getOutput(); 
 
@@ -35,16 +37,16 @@ public class ActivationCategoricalCrossentropySoftmaxLoss {
      * @param yTrue The true labels (2D array).
      */
     public void backward(double[][] dvalues, Object yTrue) {
-        this.dinputs = new double[dvalues.length][dvalues[0].length]; // Initialize dinputs
-        // number of samples
+        // Initialize dinputs
+        this.dinputs = new double[dvalues.length][dvalues[0].length];
+
         int samples = dvalues.length;
-        // number of classes
+
         int numClasses = dvalues[0].length;
 
-        int [] yTrueint = null; // Initialize yTrueint
+        int [] yTrueint = null;
 
-        // If labels are one-hot encoded,
-        // turn them into discrete values
+        // Checks if labels are binary or categorical
         if (yTrue instanceof int[]) {
             yTrueint = (int[]) yTrue;
         }else if (yTrue instanceof double[]) {
@@ -56,19 +58,19 @@ public class ActivationCategoricalCrossentropySoftmaxLoss {
         // Copy to modify the original array
         for (int i = 0; i < samples; i++){
             for (int j = 0; j < numClasses; j++){
-                this.dinputs[i][j] = dvalues[i][j]; // Copy the values from dvalues to dinputs
+                this.dinputs[i][j] = dvalues[i][j];
             }
         }
 
         // Subtract the true class from the output
         for (int i = 0; i < samples; i++){
-            dinputs[i][yTrueint[i]] -= 1; // Subtract the true class from the output
+            dinputs[i][yTrueint[i]] -= 1;
         }
 
         // Normalize the gradient by the number of samples
         for (int i = 0; i < samples; i++){
             for (int j = 0; j < numClasses; j++){
-                dinputs[i][j] /= samples; // Normalize the gradient by the number of samples
+                dinputs[i][j] /= samples;
             }
         }
     }
@@ -78,7 +80,7 @@ public class ActivationCategoricalCrossentropySoftmaxLoss {
      * @return The output of the softmax activation (2D array).
      */
     public double[][] getOutput() {
-        return this.output; // Return the output from softmax activation
+        return this.output;
     }
 
     /**
@@ -86,6 +88,6 @@ public class ActivationCategoricalCrossentropySoftmaxLoss {
      * @return The gradient of the loss with respect to the inputs (2D array).
      */
     public double[][] getDInputs() {
-        return this.dinputs; // Return the gradient of the loss with respect to the inputs
+        return this.dinputs;
     }
 }

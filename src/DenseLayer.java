@@ -198,6 +198,4 @@ public class DenseLayer {
         }
         return result;
     }
-
-
 }

@@ -4,10 +4,10 @@ public class App {
     public static void main(String[] args) throws Exception {
         
         // Create dataset
-        Data dataset = SpiralDataGenerator.createDataset(100, 3); // 100 samples, 3 classes
-
-        double[][] X = dataset.X; // 2D points
-        int[] y = dataset.y; // class labels
+        // 100 samples, 3 classes
+        Data dataset = SpiralDataGenerator.createDataset(100, 3); 
+        double[][] X = dataset.X;
+        int[] y = dataset.y;
         
         // Create a DenseLayer with 2 input features and 3 output neurons
         // First DenseLayer with 2 inputs and 3 neurons
@@ -64,7 +64,14 @@ public class App {
         }
     }
 
-    public static int[] argMax(double[][] array) {
+    /**
+     * Get the index of the maximum value in each row of a 2D array.
+     * This method iterates through each row of the 2D array and finds the index of the maximum value in that row.
+     * @param array 2D array of doubles
+     * @return int array containing the index of the maximum value in each row
+     *         of the input 2D array.
+     */
+    private static int[] argMax(double[][] array) {
         int[] maxIndices = new int[array.length];
         double maxValue = array[0][0];
 
@@ -77,16 +84,23 @@ public class App {
                 }
             }
         }
-        return maxIndices; // Return the indices of the maximum values
+        return maxIndices;
     }
 
-    public static double calculateAccuracy(int[] predictions, int[] y) {
-        int correct = 0; // Counter for correct predictions
+    /**
+     * Calculate the accuracy of predictions against the true labels.
+     * This method compares the predicted labels with the true labels and calculates the accuracy.
+     * @param predictions int array of predicted class labels
+     * @param y int array of true class labels
+     * @return double representing the accuracy of the predictions
+     */
+    private static double calculateAccuracy(int[] predictions, int[] y) {
+        int correct = 0;
         for (int i = 0; i < predictions.length; i++) {
             if (predictions[i] == y[i]) {
-                correct++; // Increment the counter for correct predictions
+                correct++;
             }
         }
-        return (double) correct / predictions.length; // Calculate and return the accuracy
+        return (double) correct / predictions.length;
     }
 }
