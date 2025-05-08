@@ -22,6 +22,9 @@ public class App {
         // Softmax classifier's combined loss and activation layer
         ActivationCategoricalCrossentropySoftmaxLoss lossActivation = new ActivationCategoricalCrossentropySoftmaxLoss();
 
+        // Learning rate and momentum
+        OptimizerSGD optimizer = new OptimizerSGD(0.01); 
+
         int epochs = 10001; // Number of epochs
         for (int epoch = 0; epoch < epochs; epoch++) {
             
@@ -57,9 +60,13 @@ public class App {
             // Backward pass through the first layer
             denseLayer1.backward(activation1.getDInputs());
 
+            // Update parameters using SGD optimizer
+            optimizer.update_params(denseLayer1);
+            optimizer.update_params(denseLayer2);
+
             // Print loss and accuracy every 100 epochs
-            if (epoch % 100 != 0) {
-                System.out.println("Epoch: " + epoch + ", Loss: " + loss + ", Accuracy: " + accuracy);
+            if (epoch % 100 == 0) {
+                System.out.println("Epoch: " + epoch + ",  Accuracy: " + accuracy + ", Loss: " + loss);
             }
         }
     }

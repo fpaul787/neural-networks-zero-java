@@ -3,15 +3,10 @@
 public class OptimizerSGD {
     
     private double learningRate; 
-    private double decay; 
-    private double momentum;
-    private int iterations = 0;
 
-    public OptimizerSGD(double learningRate, double decay, double momentum) {
-        this.learningRate = learningRate; // Initialize learning rate
-        this.decay = decay; // Initialize decay rate
-        this.momentum = momentum; // Initialize momentum
-        this.iterations = 0; // Initialize iterations
+
+    public OptimizerSGD(double learningRate) {
+        this.learningRate = learningRate;
     }
 
     public void update_params(DenseLayer layer){
