@@ -23,7 +23,7 @@ public class App {
         ActivationCategoricalCrossentropySoftmaxLoss lossActivation = new ActivationCategoricalCrossentropySoftmaxLoss();
 
         // Learning rate and momentum
-        OptimizerSGD optimizer = new OptimizerSGD(1.0); 
+        OptimizerSGD optimizer = new OptimizerSGD(); 
 
         int epochs = 10001; // Number of epochs
         for (int epoch = 0; epoch < epochs; epoch++) {
