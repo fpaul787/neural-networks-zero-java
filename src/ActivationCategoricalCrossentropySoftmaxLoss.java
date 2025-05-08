@@ -34,7 +34,7 @@ public class ActivationCategoricalCrossentropySoftmaxLoss {
      * Backward pass through the loss layer.
      * This method calculates the gradient of the loss with respect to the inputs.
      * @param dvalues The gradient of the loss with respect to the output of the softmax activation (2D array).
-     * @param yTrue The true labels (2D array).
+     * @param yTrue The true labels (1D array).
      */
     public void backward(double[][] dvalues, Object yTrue) {
         // Initialize dinputs
@@ -46,7 +46,7 @@ public class ActivationCategoricalCrossentropySoftmaxLoss {
 
         int [] yTrueint = null;
 
-        // Checks if labels are binary or categorical
+        // Check if labels are binary or categorical
         if (yTrue instanceof int[]) {
             yTrueint = (int[]) yTrue;
         }else if (yTrue instanceof double[]) {
@@ -64,13 +64,13 @@ public class ActivationCategoricalCrossentropySoftmaxLoss {
 
         // Subtract the true class from the output
         for (int i = 0; i < samples; i++){
-            dinputs[i][yTrueint[i]] -= 1;
+            this.dinputs[i][yTrueint[i]] -= 1;
         }
 
         // Normalize the gradient by the number of samples
         for (int i = 0; i < samples; i++){
             for (int j = 0; j < numClasses; j++){
-                dinputs[i][j] /= samples;
+                this.dinputs[i][j] /= samples;
             }
         }
     }
