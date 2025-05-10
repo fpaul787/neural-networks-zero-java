@@ -1,3 +1,7 @@
+/**
+ * LossCategoricalCrossentropy.java
+ * Represents the categorical crossentropy loss function.
+ */
 public class LossCategoricalCrossentropy {
 
     private double MIN = 1e-7;
