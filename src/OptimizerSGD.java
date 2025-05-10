@@ -1,4 +1,7 @@
-
+/**
+ * OptimizerSGD.java
+ * Represents the Stochastic Gradient Descent (SGD) optimizer.
+ */
 public class OptimizerSGD {
 
     private double learningRate;
@@ -11,6 +14,12 @@ public class OptimizerSGD {
         this.learningRate = 1.0;
     }
 
+    /**
+     * Update the parameters of the given layer using Stochastic Gradient Descent
+     * (SGD).
+     * 
+     * @param layer The layer whose parameters (weights and biases) will be updated.
+     */
     public void update_params(DenseLayer layer) {
         double[][] weights = layer.getWeights();
         double[] biases = layer.getBiases();

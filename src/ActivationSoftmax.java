@@ -11,6 +11,7 @@ public class ActivationSoftmax {
 
     /**
      * Forward pass through the softmax layer.
+     * 
      * @param inputs 2D array of inputs (batch size x number of classes).
      */
     public void forward(double[][] inputs) {
@@ -29,7 +30,8 @@ public class ActivationSoftmax {
                 }
             }
 
-            // Subtract the maximum value from each element in the row and calculate the exponentials
+            // Subtract the maximum value from each element in the row and calculate the
+            // exponentials
             for (int j = 0; j < cols; j++) {
                 expValues[i][j] = Math.exp(inputs[i][j] - rowMax);
             }
@@ -53,6 +55,7 @@ public class ActivationSoftmax {
 
     /*
      * Get the output of the softmax layer.
+     * 
      * @return 2D array of probabilities (batch size x number of classes).
      */
     public double[][] getOutput() {

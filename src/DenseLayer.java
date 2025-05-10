@@ -16,9 +16,11 @@ public class DenseLayer {
 
     /**
      * Constructor for the DenseLayer.
-     * @param inputSize Input size of the layer.
+     * 
+     * @param inputSize       Input size of the layer.
      * @param numberOfNeurons Number of neurons in the layer.
-     * @throws IllegalArgumentException if inputSize or numberOfNeurons is null or less than 1.
+     * @throws IllegalArgumentException if inputSize or numberOfNeurons is null or
+     *                                  less than 1.
      */
     public DenseLayer(int inputSize, int numberOfNeurons) {
         this.inputSize = inputSize;
@@ -44,7 +46,7 @@ public class DenseLayer {
 
         // Store the inputs for backpropagation
         this.inputs = input;
-        
+
         // Calculate the output values from inputs, weights, and biases
         int batchSize = input.length;
         int numberOfNeurons = this.numberOfNeurons;
@@ -65,10 +67,12 @@ public class DenseLayer {
 
     /**
      * Backward pass through the layer.
-     * @param dValues Gradient of the loss with respect to the output of this layer (2D array).
+     * 
+     * @param dValues Gradient of the loss with respect to the output of this layer
+     *                (2D array).
      */
     public void backward(double[][] dValues) {
-        
+
         // Gradient on parameters, dot product of inputs and gradient on output
         this.dWeights = new double[inputSize][numberOfNeurons];
         // Gradient on biases, sum of gradient on output
@@ -90,6 +94,7 @@ public class DenseLayer {
 
     /**
      * Get the output of the layer.
+     * 
      * @return 2D array of outputs (batch size x number of neurons).
      */
     public double[][] getOutput() {
@@ -98,6 +103,7 @@ public class DenseLayer {
 
     /**
      * Get the weights of the layer.
+     * 
      * @return 2D array of weights (input size x number of neurons).
      */
     public double[][] getWeights() {
@@ -106,6 +112,7 @@ public class DenseLayer {
 
     /**
      * Set the weights of the layer.
+     * 
      * @param weights 2D array of weights (input size x number of neurons).
      */
     public void setWeights(double[][] weights) {
@@ -114,6 +121,7 @@ public class DenseLayer {
 
     /**
      * Get the biases of the layer.
+     * 
      * @return 1D array of biases (number of neurons).
      */
     public double[] getBiases() {
@@ -122,6 +130,7 @@ public class DenseLayer {
 
     /**
      * Set the biases of the layer.
+     * 
      * @param biases 1D array of biases (number of neurons).
      */
     public void setBiases(double[] biases) {
@@ -130,6 +139,7 @@ public class DenseLayer {
 
     /**
      * Get the gradients of the weights.
+     * 
      * @return 2D array of gradients of weights (input size x number of neurons).
      */
     public double[][] getDWeights() {
@@ -138,6 +148,7 @@ public class DenseLayer {
 
     /**
      * Get the gradients of the biases.
+     * 
      * @return 1D array of gradients of biases (number of neurons).
      */
     public double[] getDBiases() {
@@ -146,6 +157,7 @@ public class DenseLayer {
 
     /**
      * Get the gradients of the inputs.
+     * 
      * @return 2D array of gradients of inputs (batch size x input size).
      */
     public double[][] getDInputs() {
@@ -172,6 +184,7 @@ public class DenseLayer {
 
     /**
      * Transpose a matrix.
+     * 
      * @param matrix 2D array to be transposed.
      * @return Transposed matrix (2D array).
      */
@@ -189,8 +202,9 @@ public class DenseLayer {
 
     /**
      * Matrix multiplication (dot product) of two matrices.
-     * @param a 
-     * @param b 
+     * 
+     * @param a
+     * @param b
      * @return Result of the dot product of a and b.
      */
     private double[][] dot(double[][] a, double[][] b) {

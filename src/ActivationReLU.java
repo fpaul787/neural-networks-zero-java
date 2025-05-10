@@ -1,3 +1,9 @@
+/**
+ * ActivationReLU.java
+ * Represents the ReLU (Rectified Linear Unit) activation function.
+ * This class provides methods for the forward and backward pass of the ReLU
+ * activation function.
+ */
 public class ActivationReLU {
 
     private double[][] inputs;
@@ -10,7 +16,8 @@ public class ActivationReLU {
     /**
      * Forward pass through the ReLU activation function.
      * This method applies the ReLU activation function to the input data.
-     * The negative values are set to zero, and the positive values remain unchanged.
+     * The negative values are set to zero, and the positive values remain
+     * unchanged.
      * The ReLU function is defined as f(x) = max(0, x).
      * 
      * @param inputs The input data (2D array)
@@ -27,7 +34,9 @@ public class ActivationReLU {
 
     /**
      * Backward pass through the ReLU activation function.
-     * @param dValues Gradient of the loss with respect to the output of this layer (2D array).
+     * 
+     * @param dValues Gradient of the loss with respect to the output of this layer
+     *                (2D array).
      */
     public void backward(double[][] dValues) {
         // Copy original since we will need to modify it
@@ -59,6 +68,7 @@ public class ActivationReLU {
 
     /**
      * Get the gradient of the inputs.
+     * 
      * @return The gradient of the inputs (2D array)
      */
     public double[][] getDInputs() {

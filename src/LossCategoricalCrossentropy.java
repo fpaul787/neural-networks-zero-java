@@ -9,10 +9,16 @@ public class LossCategoricalCrossentropy {
 
     /**
      * * Forward pass through the categorical crossentropy loss layer.
-     * This method calculates the categorical crossentropy loss for each sample in the batch.
-     * @param yPred 2D array of predicted probabilities (batch size x number of classes).
-     * @param yTrue 1D array of true class labels (for binary classification) or 2D array of one-hot encoded labels (for categorical classification).
-     * @return 1D array of categorical crossentropy losses for each sample in the batch.
+     * This method calculates the categorical crossentropy loss for each sample in
+     * the batch.
+     * 
+     * @param yPred 2D array of predicted probabilities (batch size x number of
+     *              classes).
+     * @param yTrue 1D array of true class labels (for binary classification) or 2D
+     *              array of one-hot encoded labels (for categorical
+     *              classification).
+     * @return 1D array of categorical crossentropy losses for each sample in the
+     *         batch.
      */
     public double[] forward(double[][] yPred, Object yTrue) {
         // Calculate the categorical crossentropy loss
@@ -30,7 +36,6 @@ public class LossCategoricalCrossentropy {
             }
         }
 
-
         // Probabilities for target values
         double[] correctConfidences = new double[samples];
 
@@ -38,7 +43,7 @@ public class LossCategoricalCrossentropy {
         if (yTrue instanceof int[]) {
             correctConfidences = correctConfidences(clipped, (int[]) yTrue);
         } else if (yTrue instanceof int[][]) {
-           correctConfidences = correctConfidences(clipped, (int[][]) yTrue);
+            correctConfidences = correctConfidences(clipped, (int[][]) yTrue);
         } else {
             throw new IllegalArgumentException("Invalid type for yTrue. Expected int[] or double[][]");
         }
@@ -50,8 +55,12 @@ public class LossCategoricalCrossentropy {
 
     /**
      * Calculate the mean loss for the batch.
-     * @param output 2D array of predicted probabilities (batch size x number of classes).
-     * @param yTrue 1D array of true class labels (for binary classification) or 2D array of one-hot encoded labels (for categorical classification).
+     * 
+     * @param output 2D array of predicted probabilities (batch size x number of
+     *               classes).
+     * @param yTrue  1D array of true class labels (for binary classification) or 2D
+     *               array of one-hot encoded labels (for categorical
+     *               classification).
      * @return Mean categorical crossentropy loss for the batch.
      */
     public double calculate(double[][] output, Object yTrue) {
