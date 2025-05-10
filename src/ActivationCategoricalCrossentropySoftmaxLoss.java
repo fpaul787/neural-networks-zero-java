@@ -1,3 +1,10 @@
+/**
+ * Combine softmax activation and categorical crossentropy loss into a single class.
+ * This class performs the forward pass through the softmax activation and
+ * calculates the loss using categorical crossentropy.
+ * It also performs the backward pass to calculate the gradient of the loss with
+ * respect to the inputs.
+ */
 public class ActivationCategoricalCrossentropySoftmaxLoss {
 
     private ActivationSoftmax activation;
