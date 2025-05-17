@@ -8,7 +8,6 @@ public class LossCategoricalCrossentropy {
     private double MAX = 1 - 1e-7;
 
     public LossCategoricalCrossentropy() {
-        super();
     }
 
     /**
