@@ -1,18 +1,6 @@
-## Getting Started
+## Neural Network In Java From Scratch
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+This program does not accept any input from the user. You should be able to build and run
+this program using your IDE or by running 'java App.java' in your command line. 
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Disclaimer: the accuracy and loss plateaus after the run is over. This is due to a current issue with optimization that I have not followed up on. It would be a good exercise to pick this back up and figure a way to decrease the loss even more and increase the accuracy.
